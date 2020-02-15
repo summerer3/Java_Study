@@ -1,0 +1,48 @@
+import java.util.Scanner;
+
+public class 华为面试二_偷珠宝 {
+	
+	public static int[][] Jewellery = {
+			{6, 3, 5, 4, 6},
+			{2, 2, 6, 5, 4}};
+	
+	public static int weight(int n) {
+		int weight = 0;
+		String jug = Integer.toBinaryString(n);
+		for (int i = 0; i < jug.length(); i ++ )
+		{
+			int jug_n = jug.charAt(i) - '0';
+			weight += Jewellery[1][i]*jug_n;
+		}
+		return weight;
+	}
+	
+	public static int money(int n) {
+		int money = 0;
+		String jug = Integer.toBinaryString(n);
+		for (int i = 0; i < jug.length(); i ++ )
+		{
+			int jug_n = jug.charAt(i) - '0';
+			money += Jewellery[0][i]*jug_n;
+		}
+		return money;
+	}
+
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		int max = 0;
+		String cnt = null;
+		for (int i = 0; i<32; i ++ )
+		{
+			if (weight(i) <= 10)
+			{
+				if (max < money(i))
+				{
+					max = money(i);
+					cnt = Integer.toBinaryString(i);
+				}
+			}
+		}
+		System.out.println("当方法为" + cnt + "时，拥有最多的金币" + max + "个。");
+	}
+}
